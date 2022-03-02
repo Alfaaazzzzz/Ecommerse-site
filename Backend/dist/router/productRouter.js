@@ -20,14 +20,14 @@ exports.router = (0, express_1.Router)();
 exports.router.get("/products", (req, res) => {
     Product_1.default.find({}).then((products) => {
         res.send(products);
+        console.log('fetching All Data');
     }).catch((e) => {
         res.status(500).send(e.message);
     });
-    //     console.log(products)
-    //   res.send(products);
 });
 exports.router.get('/product/:id', (req, res) => {
     const _id = req.params.id;
+    console.log('in id fetching');
     console.log(_id);
     Product_1.default.findById(_id).then((product) => {
         if (!product) {
@@ -39,28 +39,12 @@ exports.router.get('/product/:id', (req, res) => {
         res.status(500).send(error.message);
     });
 });
-/*
-API : localhost:3000/product/:id
-Method: Get
-Type : private
-*/
-exports.router.get("/product/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        let productId = req.params.id;
-        console.log(productId);
-        let product = yield Product_1.default.findOne({ _id: productId });
-        console.log(product);
-        res.status(200).json(product);
-    }
-    catch (error) {
-        res.status(500).json({ errors: [{ msg: " Server Error" }] });
-    }
-}));
+//filter API's
 //   API : localhost:3000/product/mensclothing
 //   Method: Get
 //   Type : private
 //
-exports.router.get("/mensclothing", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.router.get("/products/mens", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let product = yield Product_1.default.find({ category: "men's clothing" });
         res.status(200).json(product);
@@ -74,7 +58,7 @@ exports.router.get("/mensclothing", (req, res) => __awaiter(void 0, void 0, void
   Method: Get
   Type : private
   */
-exports.router.get("/jewelery", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.router.get("/products/jewelery", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let product = yield Product_1.default.find({ category: "jewelery" });
         res.status(200).json(product);
@@ -88,7 +72,7 @@ exports.router.get("/jewelery", (req, res) => __awaiter(void 0, void 0, void 0, 
   Method: Get
   Type : private
   */
-exports.router.get("/womensclothing", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.router.get("/products/womens", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let product = yield Product_1.default.find({ category: "women's clothing" });
         res.status(200).json(product);
@@ -102,7 +86,7 @@ exports.router.get("/womensclothing", (req, res) => __awaiter(void 0, void 0, vo
   Method: Get
   Type : private
   */
-exports.router.get("/electronics", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.router.get("/products/electronics", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let product = yield Product_1.default.find({ category: "electronics" });
         res.status(200).json(product);

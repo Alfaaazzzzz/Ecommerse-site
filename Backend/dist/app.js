@@ -5,22 +5,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require('./db/mongoose');
-// const productRouter= require('./router/productRouter')
 const productRouter_1 = require("./router/productRouter");
+const cartRouter_1 = require("./router/cartRouter");
+const cors_1 = __importDefault(require("cors"));
 // import { json } from 'body-parser'
 const app = (0, express_1.default)();
-const PORT = 3000;
+const PORT = 5000;
+app.use((0, cors_1.default)());
+app.use(express_1.default.json());
 app.use(productRouter_1.router);
-//Test Api
-// app.get("/", (req, res) => {
-//   res.send("<h1>Ecart Application Running Successfully....</h1>");
-// });
-// mongoose
-//   .connect("mongodb://127.0.0.1:27017/", { useNewUrlParser: true })
-//   .then((response) => {
-//     console.log("Mongo DB Connected Successfully....");
-//   })
-//   .catch((err) => {});
+app.use(cartRouter_1.cartRouter);
 app.listen(PORT, () => {
     console.log("check console");
     console.log(`Server Running on Port Number... ${PORT}`);

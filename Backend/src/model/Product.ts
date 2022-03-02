@@ -21,18 +21,15 @@ interface Product {
 const ProductSchema = new Schema<Product>({
   id: { type: String, required: true },
   title: { type: String, required: true },
-  price: { type: Number, required: false },
-  description: { type: String, required: false },
-  category: { type: String, required: false },
-  image: { type: String, required: false },
-  rating: { type: String, required: false },
+  price: { type: Number, required: true },
+  description: { type: String, required: true },
+  category: { type: String, required: true },
+  image: { type: String, required: true },
+  rating: { type: String, required: true },
 });
 
-let Product = model<Product>("CartProductList", ProductSchema);
+let Product = model<Product>("ProductList", ProductSchema);
 
-console.log(Product)
-
-
-
+// console.log(Product)
 
 export default Product;
