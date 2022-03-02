@@ -26,6 +26,6 @@ const CartSchema = new Schema<Cart>({
 
 let Cart = model<Cart>("carts", CartSchema);
 
-console.log(Cart)
+// console.log(Cart)
 
 export default Cart;

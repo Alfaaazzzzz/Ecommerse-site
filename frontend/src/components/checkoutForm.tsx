@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./CheckoutForm.css";
 // import Orders from "./Orders";
-const CheckoutForm:React.FC<{formData:(formData:{})=>void}> = (props) => {
+const CheckoutForm:React.FC<{formData:(formData:{})=>void, onSend:()=>void}> = (props) => {
   const [street1, setStreet1] = useState("");
   const [street2, setStreet2] = useState("");
   const [city, setCity] = useState("");
@@ -34,6 +34,10 @@ const CheckoutForm:React.FC<{formData:(formData:{})=>void}> = (props) => {
     setState("");
     setZip("");
   };
+
+  const orderHandler=()=>{
+    props.onSend()
+  }
 
   return (
     <div>
@@ -124,7 +128,7 @@ const CheckoutForm:React.FC<{formData:(formData:{})=>void}> = (props) => {
             </button>
           </Link>
         }
-        <button type="submit" className="btn btn-primary ml-2">
+        <button type="submit" className="btn btn-primary ml-2" onClick={orderHandler}>
           Order
         </button>
       </form>

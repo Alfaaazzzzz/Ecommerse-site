@@ -13,7 +13,7 @@ const Home = () => {
         }
 
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setProducts(data);
       } catch (error) {
         console.log(error);
