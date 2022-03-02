@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface product{
-  id:number;
-  price:number;
-  quantity:number;
-  totalPrice:number;
-  title:string
-}
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
     products: [
       {id:67,price:20,quantity:1,totalPrice:20,title:'T-shirt'}
-    ],
+    ]|| [],
     totalQuantity: 0,
   },
   reducers: {
@@ -44,16 +37,21 @@ const cartSlice = createSlice({
       console.log('in remove cart')
       console.log(id)
       const existingProduct= state.products.find(product=>product.id === id)
-      console.log('existingProduct', existingProduct)
+      console.log('existingProduct', existingProduct?.quantity)
       state.totalQuantity--;
       // const {quantity}=existingProduct
-      // if(quantity===1){
-      //   state.products= state.products.filter(product=>product.id !== id)
-      // }else{
-      //   existingProduct.quantity--
-      //   existingProduct.totalPrice= existingProduct.totalPrice - existingProduct.price
-      // }
+      if(existingProduct!.quantity===1){
+        state.products= state.products.filter(product=>product.id !== id)
+      }
+      else{
+        existingProduct!.quantity--
+        existingProduct!.totalPrice= existingProduct!.totalPrice - existingProduct!.price
+      }
     },
+    clearCart(state){
+      state.totalQuantity=0
+      state.products.length=0
+    }
   },
 });
 
