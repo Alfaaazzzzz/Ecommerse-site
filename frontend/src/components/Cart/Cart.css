@@ -1,0 +1,14 @@
+.buttons {
+  padding: 0.5rem;
+  background-color: #2875da;
+  color: white;
+  border: 0.5px solid rgb(65, 14, 247);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.actions button:hover,
+.actions button:active {
+  background-color: #1e21ac;
+  color: white;
+}

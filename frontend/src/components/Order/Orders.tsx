@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import OrderList from "./OrderList";
+import OrderList from "../Order/OrderList";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -25,8 +25,6 @@ const Orders = () => {
       <h1>Your Orders</h1>
       {orders.map((order)=>{
           const {address,id,products}=order
-        //   const { street1,street2,city,zip,state}=address
-        //   const {title,price,quantity}= products
           return (       
               <div key={id}>
               <OrderList address={address} products={products}/>

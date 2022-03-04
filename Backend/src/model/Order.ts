@@ -5,6 +5,7 @@ interface Product {
     title: string;
     price: number;
     quantity:number;
+    totalPrice:number
   }
 
 interface Address {
@@ -22,20 +23,20 @@ interface Order {
   }
 
   const OrderSchema= new Schema<Order>({
-      id:{type:String,required:true},
       address:{
         street1:{type:String, required:false},
         street2:{type:String, required:false},
         city:{type:String, required:false},
-        state:{type:String, required:true},
+        state:{type:String, required:false},
         zip:{type:String, required:false},
       },
-      products:{
-        id:{type:String, required:false},
+      products:[{
+        id:{type:String, required:true},
+        price:{type:Number, required:true},
+        quantity:{type:Number, required:true},
+        totalPrice:{type:Number, required:true},
         title:{type:String, required:true},
-        price:{type:Number, required:false},
-        quantity:{type:Number, required:false},
-      }
+      }]
   })
 
   let Order= model<Order>('orderlists',OrderSchema)

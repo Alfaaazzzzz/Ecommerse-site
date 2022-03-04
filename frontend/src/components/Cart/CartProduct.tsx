@@ -19,6 +19,7 @@ const CartProduct:React.FC<{item:{title:string;quantity:number;total:number;pric
   };
 
   return (
+    <body>
     <li className='product' >
       <header>
         <h3>{title}</h3>
@@ -37,6 +38,7 @@ const CartProduct:React.FC<{item:{title:string;quantity:number;total:number;pric
         </div>
       </div>
     </li>
+    </body>
   );
 };
 

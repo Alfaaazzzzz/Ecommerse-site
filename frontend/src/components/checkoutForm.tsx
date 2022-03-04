@@ -1,33 +1,30 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { cartActions } from "../store/cart-slice";
 import "./CheckoutForm.css";
 // import Orders from "./Orders";
-const CheckoutForm:React.FC<{formData:(formData:{})=>void, onSend:()=>void}> = (props) => {
+const CheckoutForm: React.FC<{
+  formData: (formData: {}) => void;
+  onSend: (formData: {}) => void;
+}> = (props) => {
   const [street1, setStreet1] = useState("");
   const [street2, setStreet2] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
 
-  // const inputChangeHandler=(e:React.ChangeEvent<HTMLInputElement>)=>{
-  //      const value=e.target.value
-  //      return value
-  // }
+  const dispatch = useDispatch();
 
   const formSubmitHandler = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = { street1, street2, city, state, zip };
-    // {
-    //   <Orders data={formData} />;
-    // }
-    props.formData(formData)
-    // console.log({
-    //   street1,
-    //   street2,
-    //   city,
-    //   state,
-    //   zip,
-    // });
+
+    props.onSend(formData);
+    console.log("formDatacheckout", formData);
+
+    props.formData(formData);
+
     setStreet1("");
     setStreet2("");
     setCity("");
@@ -35,9 +32,9 @@ const CheckoutForm:React.FC<{formData:(formData:{})=>void, onSend:()=>void}> = (
     setZip("");
   };
 
-  const orderHandler=()=>{
-    props.onSend()
-  }
+  const clearCartHandler = () => {
+    dispatch(cartActions.clearCart());
+  };
 
   return (
     <div>
@@ -128,9 +125,13 @@ const CheckoutForm:React.FC<{formData:(formData:{})=>void, onSend:()=>void}> = (
             </button>
           </Link>
         }
-        <button type="submit" className="btn btn-primary ml-2" onClick={orderHandler}>
-          Order
-        </button>
+          <button
+            type="submit"
+            className="btn btn-primary ml-2"
+            onClick={clearCartHandler}
+          >
+            Order
+          </button>
       </form>
     </div>
   );

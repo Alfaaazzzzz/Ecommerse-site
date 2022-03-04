@@ -18,6 +18,8 @@ const Order_1 = __importDefault(require("../model/Order"));
 exports.orderRouter = (0, express_1.Router)();
 exports.orderRouter.post('/order', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const order = new Order_1.default(req.body);
+    console.log(order);
+    console.log("post order data check");
     try {
         yield order.save();
         res.status(201).send(order);
