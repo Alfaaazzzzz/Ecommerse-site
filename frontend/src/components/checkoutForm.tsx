@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { cartActions } from "../store/cart-slice";
+import { toast } from 'react-toastify';
 import "./CheckoutForm.css";
 // import Orders from "./Orders";
 const CheckoutForm: React.FC<{
-  formData: (formData: {}) => void;
+  // formData: (formData: {}) => void;
   onSend: (formData: {}) => void;
 }> = (props) => {
   const [street1, setStreet1] = useState("");
@@ -23,7 +24,8 @@ const CheckoutForm: React.FC<{
     props.onSend(formData);
     console.log("formDatacheckout", formData);
 
-    props.formData(formData);
+    // props.formData(formData);
+    toast.success('Your order has been placed')
 
     setStreet1("");
     setStreet2("");
@@ -120,7 +122,7 @@ const CheckoutForm: React.FC<{
         </div>
         {
           <Link to="/cart">
-            <button type="button" className="btn btn-danger ">
+            <button type="button" className="btn btn-danger " onClick={()=>{alert('You will loose all the form data!')}}>
               Cancel
             </button>
           </Link>

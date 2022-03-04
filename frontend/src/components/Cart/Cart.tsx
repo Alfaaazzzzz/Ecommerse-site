@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import CartProduct from "./CartProduct";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 // import { useState } from "react";
 
 import "./Cart.css";
@@ -27,6 +28,8 @@ const Cart: React.FC<{ cartData: (cartProducts: {}[]) => void }> = (props) => {
 
   const clearCartHandler = () => {
     dispatch(cartActions.clearCart());
+    alert('Are you sure you want to empty your cart?')
+    toast.success('Cart has been cleared')
   };
 
   const cartItems = (

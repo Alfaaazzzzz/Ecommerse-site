@@ -6,8 +6,8 @@ export const orderRouter= Router();
 
 orderRouter.post('/order',async (req,res)=>{
     const order= new Order(req.body)
-    console.log(order)
-    console.log("post order data check")
+    // console.log(order)
+    // console.log("post order data check")
     try {
         await order.save()
         res.status(201).send(order)

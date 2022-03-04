@@ -10,22 +10,24 @@ import Orders from "./components/Order/Orders";
 import Cart from "./components/Cart/Cart";
 import CheckoutForm from "./components/checkoutForm";
 import { useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
   const [products, setProducts] = useState([{}]);
-  const [address, setAddress] = useState({});
+  // const [address, setAddress] = useState({});
 
   const CartData = (cartProducts: {}[]) => {
    
     setProducts(cartProducts);
   };
-  console.log("products =>", products);
+  // console.log("products =>", products);
 
-  const formData = (formData: {}) => {
-    setAddress(formData);
-  };
-  console.log("Address =>", address);
+  // const formData = (formData: {}) => {
+  //   setAddress(formData);
+  // };
+  // console.log("Address =>", address);
 
 
   const sendOrder = async (formData:{}) => {
@@ -72,10 +74,11 @@ function App() {
           <Route path="/cart" element={<Cart cartData={CartData} />} />
           <Route
             path="/checkout"
-            element={<CheckoutForm formData={formData} onSend={sendOrder} />}
+            element={<CheckoutForm  onSend={sendOrder} />}
           />
         </Routes>
       </main>
+      <ToastContainer />
     </div>
   );
 }

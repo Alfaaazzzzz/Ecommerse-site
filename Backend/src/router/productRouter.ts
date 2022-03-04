@@ -8,7 +8,7 @@ router.get("/products", (req, res) => {
 
     Product.find({}).then((products)=>{
         res.send(products)
-        console.log('fetching All Data')
+        // console.log('fetching All Data')
     }).catch((e)=>{
         res.status(500).send(e.message)
     })

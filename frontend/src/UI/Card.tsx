@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../store/cart-slice";
+import { toast } from "react-toastify";
 
 import './Card.css'
 
@@ -17,6 +18,7 @@ const Card:React.FC<{image:string; title:string; price:number; id:number}> = (pr
       title,
       price
     }))
+    toast.success('Added to cart')
   }
 
   return (

@@ -3,8 +3,18 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
-	background: aliceblue;
-	min-height: 20vh;
+	background: green;
+	min-height: 10vh;
+}
+
+.background{
+  margin: 1rem ;
+    background-color: #215799;
+    color: white;
+    border: 0.2px solid white;
+    padding: 1rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
 }
 
 .order{
@@ -16,6 +26,8 @@ body {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
   }
+
+
   
   .product h3 {
     margin: 0 0 0.5rem 0;
@@ -40,7 +52,7 @@ body {
   }
   
   .price {
-    font-size: 1.5rem;
+    font-size: 10rem;
     font-weight: bold;
   }
   

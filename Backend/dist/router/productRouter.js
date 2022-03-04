@@ -20,7 +20,7 @@ exports.router = (0, express_1.Router)();
 exports.router.get("/products", (req, res) => {
     Product_1.default.find({}).then((products) => {
         res.send(products);
-        console.log('fetching All Data');
+        // console.log('fetching All Data')
     }).catch((e) => {
         res.status(500).send(e.message);
     });
