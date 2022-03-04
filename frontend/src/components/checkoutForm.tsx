@@ -34,6 +34,7 @@ const CheckoutForm: React.FC<{
     setZip("");
   };
 
+
   const clearCartHandler = () => {
     dispatch(cartActions.clearCart());
   };
@@ -122,7 +123,7 @@ const CheckoutForm: React.FC<{
         </div>
         {
           <Link to="/cart">
-            <button type="button" className="btn btn-danger " onClick={()=>{alert('You will loose all the form data!')}}>
+            <button type="button" className="btn btn-danger ">
               Cancel
             </button>
           </Link>

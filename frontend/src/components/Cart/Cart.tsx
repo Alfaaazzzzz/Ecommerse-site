@@ -27,9 +27,13 @@ const Cart: React.FC<{ cartData: (cartProducts: {}[]) => void }> = (props) => {
   props.cartData(cartProducts);
 
   const clearCartHandler = () => {
-    dispatch(cartActions.clearCart());
-    alert('Are you sure you want to empty your cart?')
-    toast.success('Cart has been cleared')
+    // eslint-disable-next-line no-restricted-globals
+    let proceed = confirm("Are you sure you want to empty your cart?");
+    if(proceed){
+      dispatch(cartActions.clearCart());
+      toast.success('Cart has been cleared')
+    }
+    // alert('Are you sure you want to empty your cart?')
   };
 
   const cartItems = (
