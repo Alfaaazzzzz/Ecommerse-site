@@ -1,26 +1,39 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../store/productSlice";
 import Card from "../../UI/Card";
 
 const Jewelery = () => {
-  const [jeweleryCollection, setJeweleryCollection] = useState([]);
+  // const [jeweleryCollection, setJeweleryCollection] = useState([]);
 
-  useEffect(() => {
-    const fetchCollection = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/products/jewelery");
-        if (!response.ok) {
-          throw new Error("Something went wrong!");
-        }
+  // useEffect(() => {
+  //   const fetchCollection = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:5000/products/jewelery");
+  //       if (!response.ok) {
+  //         throw new Error("Something went wrong!");
+  //       }
 
-        const data = await response.json();
-        setJeweleryCollection(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  //       const data = await response.json();
+  //       setJeweleryCollection(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchCollection();
-  });
+  //   fetchCollection();
+  // });
+
+  const dispatch= useDispatch()
+
+  const jeweleryCollection= useSelector((state:{product:{jeweleryProducts:[]}})=>{
+    const {jeweleryProducts}= state.product
+    return jeweleryProducts
+  })
+
+  useEffect(()=>{
+    dispatch(productActions.getJeweleryProductFetch())
+  },[dispatch])
 
   return (
     <div>

@@ -40,6 +40,11 @@ let Navbar = () => {
             <li className="nav-item">
               <NavLink className="nav-link" to='/electronics'>Electronics</NavLink>
             </li>
+            <div className="mt-1 ml-4">
+              <li className="nav-item">
+                <input placeholder="Search"/>  
+              </li>
+            </div>
           </ul>
           <ul className="navbar-nav ml-auto">
               <li className="nav-item">

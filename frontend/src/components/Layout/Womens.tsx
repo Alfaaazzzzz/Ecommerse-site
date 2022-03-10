@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../store/productSlice";
 import Card from "../../UI/Card";
 
 const Womens = () => {
-  const [womensCollection, setWomensCollection] = useState([]);
+  // const [womensCollection, setWomensCollection] = useState([]);
 
-  useEffect(() => {
-    const fetchCollection = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/products/womens");
-        if (!response.ok) {
-          throw new Error("Something went wrong!");
-        }
+  // useEffect(() => {
+  //   const fetchCollection = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:5000/products/womens");
+  //       if (!response.ok) {
+  //         throw new Error("Something went wrong!");
+  //       }
 
-        const data = await response.json();
-        setWomensCollection(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  //       const data = await response.json();
+  //       setWomensCollection(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    fetchCollection();
-  });
+  //   fetchCollection();
+  // });
+
+  const womensCollection= useSelector((state:{product:{womensProducts:[]}})=>{
+    const {womensProducts}= state.product
+    return womensProducts
+  })
+
+  const dispatch= useDispatch()
+
+  useEffect(()=>{
+    dispatch(productActions.getWomensProductFetch())
+  },[dispatch])
+
 
   return (
     <div>

@@ -12,10 +12,13 @@ import CheckoutForm from "./components/checkoutForm";
 import { useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { orderActions } from './store/order-Slice';
 
 
 function App() {
   const [products, setProducts] = useState([{}]);
+  // const [orderData, setOrderData]= useState({})
   // const [address, setAddress] = useState({});
 
   const CartData = (cartProducts: {}[]) => {
@@ -29,32 +32,62 @@ function App() {
   // };
   // console.log("Address =>", address);
 
+  const dispatch= useDispatch()
+
+//  function* orderSaga():Generator<StrictEffect>{
+//   yield takeEvery("order/orderPost_Pending",workPostOrdersFetch )
+//   }
 
   const sendOrder = async (formData:{}) => {
-    const orderData = {
+    const totalOrderData = {
       address:formData,
       products,
     };
-    try {
-      console.log("inside try");
-      const response = await fetch("http://localhost:5000/order", {
-        method: "POST",
-        body: JSON.stringify(orderData),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-      console.log("after try");
+    // setOrderData(totalOrderData)
 
-      if (!response.ok) {
-        throw new Error("something went wrong!");
-      }
-      const data = response.json();
-      console.log("data", data);
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(orderActions.orderPost_Success(totalOrderData))
+
+    // try {
+    //   console.log("inside try");
+    //   const response = await fetch("http://localhost:5000/order", {
+    //     method: "POST",
+    //     body: JSON.stringify(totalOrderData),
+    //     headers: {
+    //       "content-type": "application/json",
+    //     },
+    //   });
+    //   console.log("after try");
+
+    //   if (!response.ok) {
+    //     throw new Error("something went wrong!");
+    //   }
+    //   const data = response.json();
+    //   console.log("data", data);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
+
+  // function* workPostOrdersFetch():any{
+  //   try {
+  //     const response= yield call(()=>fetch('http://localhost:5000/order',{
+  //       method: "POST",
+  //       body: JSON.stringify(orderData),
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //     }))
+  //     if (!response.ok) {
+  //           throw new Error("something went wrong!");
+  //         }
+  //       const data = response.json();
+  //       console.log("data", data);
+  //   } catch (error) {
+  //     console.log('error==> ',error);
+  //   }
+  // }
+      
+    
 
   return (
     <div className="App">
@@ -82,5 +115,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import "./OrderList.css";
 
 const OrderList: React.FC<{
@@ -9,11 +9,22 @@ const OrderList: React.FC<{
     state: string;
     zip: string;
   };
-  products: [{ title: string; price: number; quantity: number }];
+  products: [{ title: string; price: number; quantity: number, id:string }];
+  search:string
 }> = (props) => {
-  const productData = props.products.map((product) => {
-    const { title, price, quantity } = product;
+  const { street1, street2, city, zip, state } = props.address;
+
+  const productData = props.products.filter((product)=>{
+    // console.log(props.address);
+    if(props.search===''){
+      return product
+    }else if(city.toLowerCase().includes(props.search.toLowerCase())){
+      return product
+    }
+  }).map((product) => {
+    const { title, price, quantity, id } = product;
     return (
+      <div key={id}>
       <div className="order">
         <header>
           <h3>{title}</h3>
@@ -29,25 +40,17 @@ const OrderList: React.FC<{
           <h4 className="price">price: ${price}</h4>
         </div>
       </div>
+      </div>
     );
   });
 
-  // const order=productData.map(product=>{
-  //   // const{title,price,quantity}= product
-  //   return product
-  // })
-
-  // const [{ title, price, quantity }] = order;
-  const { street1, street2, city, zip, state } = props.address;
+  
   return (
     <Fragment>
         <body className="background">
           <div >
             {productData}
-          </div>
-        {/* </body>
-        <body > */}
-          <div className="order">
+            <div className="order">
             <div className="quantity">
               <h5>
                 Address: {street1} {street2}
@@ -56,6 +59,7 @@ const OrderList: React.FC<{
               <h5>state: {state}</h5>
               <h5>zip code: {zip}</h5>
             </div>
+          </div>
           </div>
         </body>
     </Fragment>

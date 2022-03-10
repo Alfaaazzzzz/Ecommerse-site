@@ -1,20 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 // interface Products{
-//   id:string;
+//   [index:number]:
+//   {id:string;
 //   price:number;
 //   quantity:number
 //   totalPrice:number
-//   title:string;
-// }
-
-// interface state{
-//   products:Products
-//   totalQuantity:number
-// }
-
-// const initialStateProducts:state={
-//   products:[{id:'p1',price:20,quantity:1,totalPrice:20,title:'T-Shirt',}]
+//   title:string;}
 // }
 
 const cartSlice = createSlice({
@@ -65,7 +57,8 @@ const cartSlice = createSlice({
     clearCart(state){
       state.totalQuantity=0
       state.products.length=0
-    }
+    },
+    
   },
 });
 
